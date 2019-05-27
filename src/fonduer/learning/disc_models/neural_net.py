@@ -19,11 +19,12 @@ class NeuralNet(Classifier):
     def __init__(self, structure):
         super(NeuralNet, self).__init__()
         self.structure = structure
-        self.linears = nn.ModuleList(_, self.structure[0])
+        self.linears = nn.ModuleList(self.structure[0], _)
         for layer_num in range(len(self.structure) - 1):
             self.linears.append(torch.nn.Linear(
             self.structure[layer_num + 1],
             self.structure[layer_num]))
+        self.linears.append(1, self.structure[len(self.structure) - 1])
 
         
 
@@ -40,7 +41,7 @@ class NeuralNet(Classifier):
         for layer_num in range(last_layer):
             if layer_num == 0:
                 X = F.relu(self.linears[layer_num](X))
-            elif layer_num == last_layer: 
+            elif layer_num == last_layer - 1: 
                 X = F.sigmoid(self.linears[layer_num])
             else:
                 X = F.relu(self.linears[layer_num])
