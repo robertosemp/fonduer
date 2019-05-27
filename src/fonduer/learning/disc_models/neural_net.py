@@ -17,9 +17,9 @@ class NeuralNet(Classifier):
     """
     
     def __init__(self, structure):
-        self.structure = structure
         super(NeuralNet, self).__init__()
-        self.linears = nn.ModuleList()
+        self.structure = structure
+        self.linears = nn.ModuleList(_, self.structure[0])
         for layer_num in range(len(self.structure) - 1):
             self.linears.append(torch.nn.Linear(
             self.structure[layer_num + 1],
