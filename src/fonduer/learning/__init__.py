@@ -4,6 +4,6 @@ from fonduer.learning.disc_models.sparse_logistic_regression import (
     SparseLogisticRegression,
 )
 from fonduer.learning.disc_models.sparse_lstm import SparseLSTM
-from fonduer.learning.disc_models.neural_network import NeuralNet
+from fonduer.learning.disc_models.neural_net import NeuralNet
 
 __all__ = ["LogisticRegression", "LSTM", "SparseLogisticRegression", "SparseLSTM", "NeuralNet"]
