@@ -40,7 +40,7 @@ class NeuralNet(Classifier):
         for layer_num in range(last_layer):
             if layer_num == 0:
                 X = F.relu(self.linears[layer_num](X))
-            else if layer_num == last_layer: 
+            elif layer_num == last_layer: 
                 X = F.sigmoid(self.linears[layer_num])
             else:
                 X = F.relu(self.linears[layer_num])
