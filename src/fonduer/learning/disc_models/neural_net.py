@@ -16,15 +16,17 @@ class NeuralNet(Classifier):
     :type name: str
     """
     
-    def __init__(self, structure):
+    def __init__(self, structure, F, Y):
         super(NeuralNet, self).__init__()
         self.structure = structure
-        self.linears = nn.ModuleList(_,self.structure[0])
+        self.input_dim = F.shape[1]
+        self.output_dim = 1
+        self.linears = nn.ModuleList(self.input_dim,self.structure[0])
         for layer_num in range(len(self.structure) - 1):
             self.linears.append(torch.nn.Linear(
             self.structure[layer_num],
             self.structure[layer_num + 1]))
-        self.linears.append(self.structure[len(self.structure) - 1], 1)
+        self.linears.append(self.structure[len(self.structure) - 1], self.output_dim)
 
         
 
